@@ -102,6 +102,11 @@ Simply open `index.html` in your browser.
 7. Summary is displayed on UI
 ---
 
+
+## 🚀 Live Demo
+🔗 https://website-summarizer-4qcfxesw7-lovely1506s-projects.vercel.app/
+
+
 ## 🎓 Assignment Justification
 
 This project demonstrates:
@@ -131,5 +136,6 @@ This project demonstrates:
 ---
 
 ✨ *Thank you for reviewing this project!*
+
 
 
