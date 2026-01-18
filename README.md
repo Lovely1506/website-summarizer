@@ -118,7 +118,8 @@ This project demonstrates:
 
 **Lovely Kumari**
 
----
+---<img width="1920" height="1080" alt="Screenshot 2026-01-18 200033" src="https://github.com/user-attachments/assets/427f2c46-e0e6-4985-b8cd-a1768e1187d5" />
+
 
 ## 📌 Future Enhancements
 
@@ -130,4 +131,5 @@ This project demonstrates:
 ---
 
 ✨ *Thank you for reviewing this project!*
+
 
