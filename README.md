@@ -100,19 +100,6 @@ Simply open `index.html` in your browser.
 5. Text is sent to AI model
 6. AI returns summarized content
 7. Summary is displayed on UI
-
----
-
-## 🎥 Demo Video (1–3 Minutes)
-
-### Suggested Flow:
-
-1. Show homepage UI & dark mode toggle
-2. Paste a public website URL
-3. Click **Summarize**
-4. Show AI‑generated summary
-5. Briefly explain how AI processes content
-
 ---
 
 ## 🎓 Assignment Justification
@@ -143,3 +130,4 @@ This project demonstrates:
 ---
 
 ✨ *Thank you for reviewing this project!*
+
