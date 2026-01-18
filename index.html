@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Website Summarizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f0c29;
+      --bg2: #302b63;
+      --bg3: #24243e;
+      --card: rgba(255,255,255,0.12);
+      --text: #ffffff;
+      --accent: #b983ff;
+    }
+
+    body.light {
+      --bg: #e0eafc;
+      --bg2: #cfdef3;
+      --bg3: #ffffff;
+      --card: rgba(255,255,255,0.8);
+      --text: #000;
+      --accent: #5b2cff;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--bg), var(--bg2), var(--bg3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      transition: 0.4s;
+    }
+
+    .card {
+      width: 90%;
+      max-width: 550px;
+      padding: 30px;
+      border-radius: 20px;
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 0 40px rgba(185,131,255,0.35);
+      animation: fadeUp 0.8s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.85;
+      margin-bottom: 20px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .toggle {
+      cursor: pointer;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      margin-bottom: 15px;
+    }
+
+    button.main {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #b983ff, #6f42c1);
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button.main:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(185,131,255,0.6);
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.2);
+      font-size: 14px;
+      min-height: 80px;
+      line-height: 1.6;
+    }
+
+    .loader {
+      text-align: center;
+      animation: blink 1.2s infinite;
+    }
+
+    @keyframes blink {
+      0% { opacity: 0.3; }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 12px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="top">
+      <strong>✨ AI Summarizer</strong>
+      <button class="toggle" onclick="toggleMode()">🌙 / ☀</button>
+    </div>
+
+    <h1>Website Summarizer</h1>
+    <p class="subtitle">Paste any public URL & get instant AI summary</p>
+
+    <input id="url" placeholder="https://example.com" />
+    <button class="main" onclick="summarize()">Summarize</button>
+
+    <div id="result" class="result">
+      Your AI summary will appear here...
+    </div>
+
+    <div class="footer">
+      AI-Driven Website Summarizer · Assignment Project
+    </div>
+  </div>
+
+<script>
+  function toggleMode() {
+    document.body.classList.toggle("light");
+  }
+
+  async function summarize() {
+    const url = document.getElementById("url").value;
+    const result = document.getElementById("result");
+
+    if (!url) {
+      result.innerText = "Please enter a valid URL.";
+      return;
+    }
+
+    result.innerHTML = "<div class='loader'>Summarizing...</div>";
+
+    try {
+      const res = await fetch("http://localhost:5000/summarize", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url })
+      });
+
+      const data = await res.json();
+      result.innerText = data.summary;
+    } catch {
+      result.innerText = "Error connecting to server.";
+    }
+  }
+</script>
+
+</body>
+</html>
